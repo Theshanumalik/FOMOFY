@@ -1,4 +1,5 @@
 import { getUser } from "@/lib/auth";
+import dbConnect from "@/lib/db";
 import { catchAsyncError, CustomError, CustomResponse } from "@/lib/utils";
 import { projectSchema } from "@/lib/zod-schema";
 import Project from "@/model/Project";
@@ -13,6 +14,8 @@ export const POST = catchAsyncError(async (req: NextRequest) => {
   if (!user) {
     throw new CustomError("Authentication required.", 401);
   }
+
+  await dbConnect();
 
   const project = await Project.create({
     ...data,
@@ -32,6 +35,7 @@ export const GET = catchAsyncError(async (req: NextRequest) => {
     throw new CustomError("Authentication required.", 401);
   }
 
+  await dbConnect();
   const projects = await Project.find({ user: user.id });
 
   const res = new CustomResponse(projects);
@@ -51,6 +55,7 @@ export const PUT = catchAsyncError(async (req: NextRequest) => {
     throw new CustomError("Authentication required.", 401);
   }
 
+  await dbConnect();
   const project = await Project.findOneAndUpdate(
     { _id: projectId, user: user.id },
     { ...data, user: user.id },
@@ -81,6 +86,7 @@ export const DELETE = catchAsyncError(async (req: NextRequest) => {
     throw new CustomError("Authentication required.", 401);
   }
 
+  await dbConnect();
   const project = await Project.findOneAndDelete({
     _id: projectId,
     user: user.id,

@@ -7,7 +7,7 @@ import ToastProvider from "@/components/toast-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ClickBaitMate",
+  title: "Fomofy",
   description: "Convert more visitors into customers with a call-to-action.",
 };
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="fantasy">
+    <html lang="en" data-theme="pastel">
       <body className={inter.className}>
         <AuthProvider>
           <ToastProvider />

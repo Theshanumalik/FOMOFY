@@ -37,11 +37,14 @@ const Navbar = () => {
       </div>
       <div className="navbar-center">
         <Link href={"/"} className="font-semibold text-gray-400">
-          ClickBaitMate
+          Fomofy
         </Link>
       </div>
       <div className="navbar-end">
-        <Link href="/login" className="btn btn-sm">
+        <Link
+          href="/login"
+          className="btn btn-sm px-4 flex items-center btn-outline"
+        >
           Get Started
         </Link>
       </div>

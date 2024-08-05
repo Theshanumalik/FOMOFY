@@ -1,16 +1,15 @@
 import { Document, models, model, Model, Schema, Types } from "mongoose";
+import popupSchema, { IPopup } from "./Popup";
 
 export interface IProject {
   user: Types.ObjectId;
   title: string;
   url: string;
-  popups: Types.ObjectId[];
+  popups: IPopup[];
   settings: {
     position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
     backgroundColor: string;
     delayBetweenPopups: number;
-    delayBeforeFirstPopup: number;
-    delayBeforeRemovingPopup: number;
   };
 }
 
@@ -33,12 +32,11 @@ const projectSchema = new Schema<IProject, IProjectModel>(
       type: String,
       required: true,
     },
-    popups: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Popup",
-      },
-    ],
+    popups: {
+      type: [popupSchema],
+      maxlength: 10,
+      default: [],
+    },
     settings: {
       position: {
         type: String,
@@ -51,15 +49,7 @@ const projectSchema = new Schema<IProject, IProjectModel>(
       },
       delayBetweenPopups: {
         type: Number,
-        default: 0,
-      },
-      delayBeforeFirstPopup: {
-        type: Number,
-        default: 0,
-      },
-      delayBeforeRemovingPopup: {
-        type: Number,
-        default: 0,
+        default: 5000,
       },
     },
   },

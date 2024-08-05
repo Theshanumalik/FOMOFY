@@ -28,9 +28,9 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="w-60 h-screen p-3 bg-white flex flex-col">
+    <div className="w-60 h-screen p-3 bg-white flex flex-col border-r">
       <div className="my-5">
-        <h1 className="font-semibold text-lg">ClickBaitMate</h1>
+        <h1 className="font-semibold text-lg">FOMOFY</h1>
       </div>
       <ul className="menu p-0 space-y-3 flex-1">
         {links.map((link, i) => (
@@ -48,7 +48,7 @@ const Sidebar = () => {
           LOG OUT
         </button>
         <hr />
-        <p className="text-xs text-gray-500 mt-2">© 2021 ClickBaitMate</p>
+        <p className="text-xs text-gray-500 mt-2">© 2024 FOMOFY</p>
       </div>
     </div>
   );
