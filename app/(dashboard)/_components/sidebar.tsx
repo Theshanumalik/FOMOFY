@@ -1,10 +1,15 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { FaDollarSign, FaQuestionCircle, FaSignOutAlt } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { FaGear } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
+  const pathname = usePathname();
   const links = [
     {
       name: "Dashboard",
@@ -35,7 +40,12 @@ const Sidebar = () => {
       <ul className="menu p-0 space-y-3 flex-1">
         {links.map((link, i) => (
           <li key={i}>
-            <Link href={link.href} className="flex items-center p-2 rounded-md">
+            <Link
+              href={link.href}
+              className={cn("flex items-center p-2 rounded-md", {
+                active: pathname.includes(link.href),
+              })}
+            >
               <span>{link.icon}</span>
               {link.name}
             </Link>
@@ -43,7 +53,15 @@ const Sidebar = () => {
         ))}
       </ul>
       <div>
-        <button className="btn flex gap-1 items-center btn-link no-underline text-gray-600 px-0">
+        <button
+          className="btn flex gap-1 items-center btn-link no-underline text-gray-600 px-0"
+          onClick={() => {
+            signOut({
+              redirect: true,
+              callbackUrl: "/",
+            });
+          }}
+        >
           <FaSignOutAlt />
           LOG OUT
         </button>

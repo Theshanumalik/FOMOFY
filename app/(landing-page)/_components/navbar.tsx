@@ -37,12 +37,12 @@ const Navbar = () => {
       </div>
       <div className="navbar-center">
         <Link href={"/"} className="font-semibold text-gray-400">
-          Fomofy
+          FOMOFY
         </Link>
       </div>
       <div className="navbar-end">
         <Link
-          href="/login"
+          href="/sign-in"
           className="btn btn-sm px-4 flex items-center btn-outline"
         >
           Get Started

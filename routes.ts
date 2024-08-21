@@ -2,7 +2,7 @@
  * These are the routes that are public and do not require authentication
  * @type {string[]}
  */
-export const publicRoutes = ["/"];
+export const publicRoutes = ["/", "/api/script"];
 
 /**
  * These are auth routes that are used for authentication

@@ -16,7 +16,7 @@ const Hero = () => {
           </p>
 
           <Link href={"/dashboard"} className="btn btn-primary px-10">
-            Get Started <FaArrowRight />
+            Go to Dashboard <FaArrowRight />
           </Link>
         </div>
       </div>

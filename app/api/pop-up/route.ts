@@ -46,11 +46,6 @@ export const GET = catchAsyncError(async (req: NextRequest) => {
     user: user.id,
   });
 
-  console.log({
-    projectId: projectId,
-    userId: user.id,
-  });
-
   if (project) {
     const response = new CustomResponse(project);
     return NextResponse.json(response, { status: response.statusCode });

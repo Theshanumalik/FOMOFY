@@ -19,7 +19,7 @@ const NewProjectPage = () => {
         .then((res) => {
           setLoading(false);
           resolve(res);
-          router.push("/dashboard/" + res.data._id);
+          router.push("/dashboard/");
         })
         .catch((err) => {
           console.log(err);
