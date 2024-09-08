@@ -5,6 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 import Project from "@/model/Project";
 import dbConnect from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export const PUT = catchAsyncError(async (req: NextRequest) => {
   const user = await getUser();
   if (!user) {

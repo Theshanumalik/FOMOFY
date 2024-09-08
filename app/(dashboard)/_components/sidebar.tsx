@@ -7,6 +7,7 @@ import { FaGear } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -35,19 +36,29 @@ const Sidebar = () => {
   return (
     <div className="w-60 h-screen p-3 bg-white flex flex-col border-r">
       <div className="my-5">
-        <h1 className="font-semibold text-lg">FOMOFY</h1>
+        <h1 className="font-semibold text-lg hidden lg:block">FOMOFY</h1>
+        <Image
+          src="/img/icon.png"
+          width={100}
+          height={100}
+          alt="Fomofy logo"
+          className="lg:hidden"
+        />
       </div>
       <ul className="menu p-0 space-y-3 flex-1">
         {links.map((link, i) => (
           <li key={i}>
             <Link
               href={link.href}
-              className={cn("flex items-center p-2 rounded-md", {
-                active: pathname.includes(link.href),
-              })}
+              className={cn(
+                "flex items-center p-2 justify-center md:justify-start rounded-md",
+                {
+                  active: pathname.includes(link.href),
+                }
+              )}
             >
               <span>{link.icon}</span>
-              {link.name}
+              <span className="hidden md:block">{link.name}</span>
             </Link>
           </li>
         ))}
@@ -63,10 +74,12 @@ const Sidebar = () => {
           }}
         >
           <FaSignOutAlt />
-          LOG OUT
+          <span className="hidden lg:block">LOGOUT</span>
         </button>
         <hr />
-        <p className="text-xs text-gray-500 mt-2">© 2024 FOMOFY</p>
+        <p className="text-xs text-gray-500 mt-2 hidden lg:block">
+          © 2024 FOMOFY
+        </p>
       </div>
     </div>
   );

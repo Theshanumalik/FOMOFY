@@ -11,8 +11,7 @@ const Hero = () => {
           </h1>
           <p className="py-6">
             FOMOFY is a simple and easy-to-use platform that helps you create
-            beautiful and engaging FOMO notifications for your website in
-            minutes.
+            beautiful and engaging FOMO popups for your website in minutes.
           </p>
 
           <Link href={"/dashboard"} className="btn btn-primary px-10">

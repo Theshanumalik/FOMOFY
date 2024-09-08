@@ -8,7 +8,7 @@ const Settings = async () => {
   if (!user) return null;
   return (
     <div>
-      <div className="card bg-base-100 shadow-xl max-w-lg mx-auto">
+      <div className="card bg-base-100 shadow-xl max-w-lg mx-auto card-compact lg:card-normal">
         <figure>
           <Image
             src={user.image as string}

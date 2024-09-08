@@ -2,7 +2,7 @@
 import { projectSchema } from "@/lib/zod-schema";
 import Link from "next/link";
 import React from "react";
-import { FaGlobe, FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
+import { FaGlobe } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
 import { z } from "zod";
 
@@ -21,9 +21,9 @@ const ProjectCard = ({ title, _id, url }: ProjctProps) => {
         </div>
       </Link>
       <div>
-        <button onClick={() => alert("HElo")}>
+        <Link href={"/project/edit/" + _id}>
           <FaGear />
-        </button>
+        </Link>
       </div>
     </div>
   );

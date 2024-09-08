@@ -10,6 +10,7 @@ export interface IProject {
     position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
     backgroundColor: string;
     delayBetweenPopups: number;
+    textColor: string;
   };
 }
 
@@ -45,11 +46,15 @@ const projectSchema = new Schema<IProject, IProjectModel>(
       },
       backgroundColor: {
         type: String,
-        default: "#ffffff",
+        default: "#fff",
       },
       delayBetweenPopups: {
         type: Number,
-        default: 5000,
+        default: 2000,
+      },
+      textColor: {
+        type: String,
+        default: "#000",
       },
     },
   },

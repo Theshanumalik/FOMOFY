@@ -16,7 +16,5 @@ export const projectSchema = z.object({
     position: z.string().optional(),
     backgroundColor: z.string().optional(),
     delayBetweenPopups: z.number().optional(),
-    delayBeforeFirstPopup: z.number().optional(),
-    delayBeforeRemovingPopup: z.number().optional(),
   }),
 });

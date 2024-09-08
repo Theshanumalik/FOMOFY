@@ -77,7 +77,7 @@ const ManagePopups = () => {
           <FaArrowLeft />
         </button>
         <h3 className="text-md font-semibold flex-1">{projectTitle}</h3>
-        <Link href={"/dashboard"} className="px-4">
+        <Link href={"/project/edit/" + params.id} className="px-4">
           <FaGear />
         </Link>
       </div>

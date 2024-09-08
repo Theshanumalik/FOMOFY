@@ -1,19 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 ._notification-container {
   position: fixed;
+  z-index: 1000;
+  width: 300px;
+}
+._notification-container * {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+/* Positions */
+._notification-container.top-right {
   top: 20px;
   right: 20px;
-  z-index: 1000;
-  width: 350px;
 }
-
-._notification-container * {
-  font-family: "Roboto", sans-serif;
+._notification-container.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+._notification-container.top-left {
+  top: 20px;
+  left: 20px;
+}
+._notification-container.bottom-left {
+  bottom: 20px;
+  left: 20px;
 }
 ._notification {
   display: flex;
   align-items: center;
-  background-color: #f0f0f0;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -22,7 +36,7 @@
 ._notification-avatar {
   width: 50px;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 50%;
   margin-right: 10px;
 }
 ._notification-content {
@@ -32,12 +46,10 @@
   margin: 0;
   font-size: 16px;
   font-weight: bold;
-  color: #000;
 }
 ._notification-message {
   margin: 5px 0;
   font-size: 14px;
-  color: #444;
 }
 ._notification-timeago {
   font-size: 12px;

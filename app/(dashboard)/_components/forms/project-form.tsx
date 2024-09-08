@@ -22,14 +22,14 @@ const ProjectForm = ({ onSubmit, values, isSubmitting }: ProjectFormProps) => {
       title: values?.title || "",
       url: values?.url || "",
       settings: values?.settings || {
-        delayBeforeFirstPopup: 0,
-        delayBeforeRemovingPopup: 0,
-        delayBetweenPopups: 0,
-        backgroundColor: "#ffffff",
-        position: "bottom-right",
+        delayBetweenPopups: 2000,
+        backgroundColor: "#fff",
+        position: "top-right",
       },
     },
   });
+
+  console.log(values);
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -87,14 +87,30 @@ const ProjectForm = ({ onSubmit, values, isSubmitting }: ProjectFormProps) => {
           {...form.register("settings.position")}
           className="border p-2 px-3 rounded-md"
         >
-          <option value="bottom-right">Bottom Right</option>
-          <option value="bottom-left">Bottom Left</option>
           <option value="top-right">Top Right</option>
           <option value="top-left">Top Left</option>
+          <option value="bottom-right">Bottom Right</option>
+          <option value="bottom-left">Bottom Left</option>
         </select>
         <span className="text-xs text-red-500">
           {form.formState.errors.settings?.position &&
             form.formState.errors.settings.position.message}
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-1 mt-2">
+        <label htmlFor="settings.delayBetweenPopups" className="text-sm">
+          Delay between popups
+        </label>
+        <input
+          type="number"
+          {...form.register("settings.delayBetweenPopups")}
+          placeholder="Enter the delay between popups."
+          className="border p-2 px-3 rounded-md"
+        />
+        <span className="text-xs text-red-500">
+          {form.formState.errors.settings?.delayBetweenPopups &&
+            form.formState.errors.settings.delayBetweenPopups.message}
         </span>
       </div>
 
@@ -108,7 +124,7 @@ const ProjectForm = ({ onSubmit, values, isSubmitting }: ProjectFormProps) => {
         )}
         disabled={isSubmitting}
       >
-        {isSubmitting ? "please wait..." : "Create Project"}
+        {isSubmitting ? "saving..." : "Save"}
       </button>
     </form>
   );

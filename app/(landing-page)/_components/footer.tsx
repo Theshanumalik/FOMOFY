@@ -36,7 +36,7 @@ const Footer = () => {
         </nav>
         <aside>
           <p>
-            Design &#x26; Developed by{" "}
+            Designed &#x26; Developed by{" "}
             <a
               href="https://theshanumalik.vercel.com"
               className="link link-hover"

@@ -8,7 +8,7 @@ const FAQ = () => {
       </h4>
       <div className="join join-vertical w-full max-w-xl mx-auto">
         <div className="collapse collapse-arrow join-item border">
-          <input type="radio" name="my-accordion-4" defaultChecked />
+          <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-base font-medium">
             How to get started?
           </div>

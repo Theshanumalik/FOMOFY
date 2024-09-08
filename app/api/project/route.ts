@@ -44,10 +44,16 @@ export const GET = catchAsyncError(async (req: NextRequest) => {
 });
 
 export const PUT = catchAsyncError(async (req: NextRequest) => {
-  const searchParams = new URLSearchParams(req.url);
-  const data = projectSchema.parse(await req.json());
+  const { searchParams } = new URL(req.url);
+  const {
+    popups,
+    user: userId,
+    ...data
+  } = projectSchema.parse(await req.json());
 
   const projectId = searchParams.get("id");
+
+  console.log(data, projectId);
 
   // LOGIN Check if user is logged in
   const user = await getUser();
