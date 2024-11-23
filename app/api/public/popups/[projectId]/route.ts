@@ -15,6 +15,16 @@ export const GET = catchAsyncError(
       throw new CustomError("404 Page Not found", 404);
     }
 
-    return NextResponse.json(project);
+    const response = new NextResponse(JSON.stringify({ project }));
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PUT, DELETE"
+    );
+    response.headers.set(
+      "Access-Control-Allow-Headers",
+      "Content-Type, Authorization"
+    );
+    return response;
   }
 );
