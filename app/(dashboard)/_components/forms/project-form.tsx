@@ -1,10 +1,9 @@
 "use client";
-import { projectSchema } from "@/lib/zod-schema";
+import { projectSchema, themes } from "@/lib/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import ColorPicker from "../custom-color-picker";
 import { cn } from "@/lib/utils";
 
 type ProjectForm = z.infer<typeof projectSchema>;
@@ -22,8 +21,8 @@ const ProjectForm = ({ onSubmit, values, isSubmitting }: ProjectFormProps) => {
       title: values?.title || "",
       url: values?.url || "",
       settings: values?.settings || {
-        delayBetweenPopups: 2000,
-        backgroundColor: "#fff",
+        delay: "2000",
+        theme: "classic",
         position: "top-right",
       },
     },
@@ -65,18 +64,18 @@ const ProjectForm = ({ onSubmit, values, isSubmitting }: ProjectFormProps) => {
 
       <div className="flex flex-col gap-1 mt-2">
         <label htmlFor="settings.backgroundColor" className="text-sm">
-          Background color
+          Theme
         </label>
-        <ColorPicker
-          colors={["#ffffff", "#007bff", "#6610f2", "#6f42c1", "#e83e8c"]}
-          selectedColor={form.watch("settings.backgroundColor")}
-          onChange={(color) => form.setValue("settings.backgroundColor", color)}
-        />
-
-        <span className="text-xs text-red-500">
-          {form.formState.errors.settings?.backgroundColor &&
-            form.formState.errors.settings.backgroundColor.message}
-        </span>
+        <select
+          {...form.register("settings.theme")}
+          className="border p-2 px-3 rounded-md uppercase"
+        >
+          {themes.map((theme) => (
+            <option key={theme} className="uppercase" value={theme}>
+              {theme}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="flex flex-col gap-1 mt-2">
@@ -104,13 +103,13 @@ const ProjectForm = ({ onSubmit, values, isSubmitting }: ProjectFormProps) => {
         </label>
         <input
           type="number"
-          {...form.register("settings.delayBetweenPopups")}
+          {...form.register("settings.delay")}
           placeholder="Enter the delay between popups."
           className="border p-2 px-3 rounded-md"
         />
         <span className="text-xs text-red-500">
-          {form.formState.errors.settings?.delayBetweenPopups &&
-            form.formState.errors.settings.delayBetweenPopups.message}
+          {form.formState.errors.settings?.delay?.message &&
+            form.formState.errors.settings.delay.message}
         </span>
       </div>
 

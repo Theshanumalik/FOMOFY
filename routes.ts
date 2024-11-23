@@ -2,7 +2,14 @@
  * These are the routes that are public and do not require authentication
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/api/script"];
+export const publicRoutes = ["/"];
+
+/**
+ * This is the prefix for the api public routes
+ * @type {string}
+ */
+
+export const apiPublicPrefix = "/api/public/popups";
 
 /**
  * These are auth routes that are used for authentication

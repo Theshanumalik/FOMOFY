@@ -1,6 +1,16 @@
 import { Document, models, model, Model, Schema, Types } from "mongoose";
 import popupSchema, { IPopup } from "./Popup";
 
+enum Theme {
+  Classic = "classic",
+  Glass = "glass",
+  RegularPink = "regular-pink",
+  RegularBlue = "regular-blue",
+  GradiantClassic = "gradient-classic",
+  GradientPink = "gradient-pink",
+  GradientBlue = "gradient-blue",
+  GradientDark = "gradient-dark",
+}
 export interface IProject {
   user: Types.ObjectId;
   title: string;
@@ -8,9 +18,8 @@ export interface IProject {
   popups: IPopup[];
   settings: {
     position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
-    backgroundColor: string;
-    delayBetweenPopups: number;
-    textColor: string;
+    delay: number;
+    theme: Theme;
   };
 }
 
@@ -44,17 +53,23 @@ const projectSchema = new Schema<IProject, IProjectModel>(
         enum: ["top-left", "top-right", "bottom-left", "bottom-right"],
         default: "top-right",
       },
-      backgroundColor: {
-        type: String,
-        default: "#fff",
-      },
-      delayBetweenPopups: {
+      delay: {
         type: Number,
-        default: 2000,
+        default: 1000,
       },
-      textColor: {
+      theme: {
         type: String,
-        default: "#000",
+        enum: [
+          "classic",
+          "glass",
+          "regular-pink",
+          "regular-blue",
+          "gradient-classic",
+          "gradient-pink",
+          "gradient-blue",
+          "gradient-dark",
+        ],
+        default: "classic",
       },
     },
   },

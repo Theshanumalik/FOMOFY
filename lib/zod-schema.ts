@@ -7,6 +7,17 @@ export const popupSchema = z.object({
   timeago: z.string(),
 });
 
+export const themes: [string, ...string[]] = [
+  "classic",
+  "glass",
+  "regular-pink",
+  "regular-blue",
+  "gradient-classic",
+  "gradient-pink",
+  "gradient-blue",
+  "gradient-dark",
+];
+
 export const projectSchema = z.object({
   user: z.string().optional(),
   title: z.string().min(3, "Title must be at least 3 characters long"),
@@ -14,7 +25,7 @@ export const projectSchema = z.object({
   popups: z.array(popupSchema).optional(),
   settings: z.object({
     position: z.string().optional(),
-    backgroundColor: z.string().optional(),
-    delayBetweenPopups: z.number().optional(),
+    theme: z.enum(themes).optional(),
+    delay: z.string().optional(),
   }),
 });
