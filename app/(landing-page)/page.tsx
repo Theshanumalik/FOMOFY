@@ -11,7 +11,6 @@ const Home = () => {
         projectId="66dd8138cc36f7032ba35d93"
         isAppend={true}
         replayKey={1}
-        setLoading={() => {}}
       />
     </>
   );

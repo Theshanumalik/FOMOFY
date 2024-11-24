@@ -6,7 +6,7 @@ type PopupScriptProps = {
   projectId: string;
   isAppend: boolean;
   replayKey: number;
-  setLoading: (isLoading: boolean) => void;
+  setLoading?: (isLoading: boolean) => void;
 };
 
 const PopupScript = ({
@@ -33,13 +33,19 @@ const PopupScript = ({
     script.type = "module";
     script.dataset.popupId = projectId;
 
-    setLoading(true);
+    if (setLoading) {
+      setLoading(true);
+    }
 
     script.onload = () => {
-      setLoading(false);
+      if (setLoading) {
+        setLoading(false);
+      }
     };
     script.onerror = () => {
-      setLoading(false);
+      if (setLoading) {
+        setLoading(false);
+      }
       console.error("Failed to load the popup script.");
     };
 
