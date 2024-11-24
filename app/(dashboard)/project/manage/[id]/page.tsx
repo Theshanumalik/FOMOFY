@@ -1,6 +1,7 @@
 "use client";
 import PopupContainer from "@/app/(dashboard)/_components/dnd/popup-container";
 import AddPopup from "@/app/(dashboard)/_components/forms/add-pop-up";
+import PopupPreview from "@/app/(dashboard)/_components/popup-preview";
 import { IPopup } from "@/model/Popup";
 import axios from "axios";
 import Link from "next/link";
@@ -14,11 +15,9 @@ const ManagePopups = () => {
   const params = useParams<{ id: string }>();
   const [popups, setPopups] = useState<IPopup[]>([]);
   const [projectTitle, setProjectTitle] = useState("");
-  const [embedCode, setEmbedCode] = useState({
-    css: `${location.protocol}//${location.host}/style/pop-up.css`,
-    js: `${location.protocol}//${location.host}/api/script/?project-id=${params.id}`,
-    jquery: `https://code.jquery.com/jquery-3.6.0.min.js`,
-  });
+  const [embedCode, setEmbedCode] =
+    useState(`<script type="module" data-popup-id="${params.id}" crossorigin src="https://popup-embed.vercel.app/assets/index-c5ae2c2e.js"></script>
+   `);
   const router = useRouter();
 
   const handleAddPopup = (popup: IPopup) => {
@@ -60,9 +59,7 @@ const ManagePopups = () => {
   };
 
   const copyEmbedCode = () => {
-    navigator.clipboard.writeText(
-      `<link rel="stylesheet" href="${embedCode.css}" />\n<script src="${embedCode.jquery}" defer></script>\n<script src="${embedCode.js}" defer></script>`
-    );
+    navigator.clipboard.writeText(embedCode);
     toast.success("Embed code copied to clipboard.");
   };
   return (
@@ -87,12 +84,15 @@ const ManagePopups = () => {
         setPopups={(popups) => setPopups(popups)}
       />
       <AddPopup onAdd={handleAddPopup} />
-      <button
-        onClick={handlePopupUpdate}
-        className="btn btn-primary my-3 disabled:opacity-50"
-      >
-        <FaSave /> Save Changes
-      </button>
+      <div className="flex gap-2 w-full">
+        <button
+          onClick={handlePopupUpdate}
+          className="btn btn-primary my-3 disabled:opacity-50"
+        >
+          <FaSave /> Save Changes
+        </button>
+        <PopupPreview projectId={params.id} />
+      </div>
       <div>
         <div className="mockup-code bg-white shadow-sm border relative">
           <button
@@ -103,13 +103,7 @@ const ManagePopups = () => {
             <FaClipboard />
           </button>
           <pre>
-            <code>{`<link rel="stylesheet" href="${embedCode.css}" />`}</code>
-          </pre>
-          <pre>
-            <code>{`<script src="${embedCode.jquery}" defer></script>`}</code>
-          </pre>
-          <pre>
-            <code>{`<script src="${embedCode.js}" defer></script>`}</code>
+            <code>{embedCode}</code>
           </pre>
         </div>
       </div>

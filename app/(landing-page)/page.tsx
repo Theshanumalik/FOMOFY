@@ -1,17 +1,18 @@
 import Hero from "./_components/hero";
 import FAQ from "./_components/faq";
-import Script from "next/script";
+import PopupScript from "./_components/popup-script";
 
 const Home = () => {
   return (
     <>
       <Hero />
       <FAQ />
-      <Script
-        src="https://fomofy.vercel.app/api/script/?project-id=66dd8138cc36f7032ba35d93"
-        defer
+      <PopupScript
+        projectId="66dd8138cc36f7032ba35d93"
+        isAppend={true}
+        replayKey={1}
+        setLoading={() => {}}
       />
-      <Script src="https://code.jquery.com/jquery-3.6.0.min.js" defer />
     </>
   );
 };

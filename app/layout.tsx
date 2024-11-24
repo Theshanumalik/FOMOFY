@@ -18,12 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="pastel">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://fomofy.vercel.app/style/pop-up.css"
-        />
-      </head>
       <body className={inter.className}>
         <AuthProvider>
           <ToastProvider />
