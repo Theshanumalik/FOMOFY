@@ -18,15 +18,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const ogImage = "https://fomofy.vercel.app/og-image.png";
   return (
     <html lang="en" data-theme="pastel">
       <head>
-        <meta title="og:site_name" content="Fomofy" />
-        <meta title="og:type" content="website" />
+        <meta property="og:url" content="https://fomofy.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Fomofy" />
         <meta
-          title="og:image"
-          content="https://fomofy.vercel/img/og-image.jpg"
+          property="og:description"
+          content="Convert more visitors into customers with a call-to-action."
         />
+        <meta property="og:image" content={ogImage} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="fomofy.vercel.app" />
+        <meta property="twitter:url" content="https://fomofy.vercel.app/" />
+        <meta name="twitter:title" content="Fomofy" />
+        <meta
+          name="twitter:description"
+          content="Convert more visitors into customers with a call-to-action."
+        />
+        <meta name="twitter:image" content={ogImage} />
       </head>
       <body className={inter.className}>
         <AuthProvider>
