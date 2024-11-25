@@ -18,7 +18,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const ogImage = "https://fomofy.vercel.app/og-image.png";
+  const ogImage = "https://fomofy.vercel.app/img/og-image.jpg";
   return (
     <html lang="en" data-theme="pastel">
       <head>
