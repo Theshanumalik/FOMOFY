@@ -28,7 +28,7 @@ const PopupScript = ({
     }
 
     const script = document.createElement("script");
-    script.src = `https://popup-embed.vercel.app/assets/index-c5ae2c2e.js?v=${replayKey}`;
+    script.src = `${process.env.NEXT_PUBLIC_SCRIPT_POPUP}?v=${replayKey}`;
     script.crossOrigin = "";
     script.type = "module";
     script.dataset.popupId = projectId;

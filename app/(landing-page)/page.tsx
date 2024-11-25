@@ -8,7 +8,7 @@ const Home = () => {
       <Hero />
       <FAQ />
       <PopupScript
-        projectId="66dd8138cc36f7032ba35d93"
+        projectId={process.env.POPUP_ID as string}
         isAppend={true}
         replayKey={1}
       />
