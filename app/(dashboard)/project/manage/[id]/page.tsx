@@ -16,7 +16,7 @@ const ManagePopups = () => {
   const [popups, setPopups] = useState<IPopup[]>([]);
   const [projectTitle, setProjectTitle] = useState("");
   const [embedCode, setEmbedCode] =
-    useState(`<script type="module" data-popup-id="${params.id}" crossorigin src="https://popup-embed.vercel.app/assets/index-c5ae2c2e.js"></script>
+    useState(`<script type="module" data-popup-id="${params.id}" crossorigin src="${process.env.NEXT_PUBLIC_SCRIPT_POPUP}"></script>
    `);
   const router = useRouter();
 
@@ -94,17 +94,22 @@ const ManagePopups = () => {
         <PopupPreview projectId={params.id} />
       </div>
       <div>
-        <div className="mockup-code bg-white shadow-sm border relative">
-          <button
-            type="button"
-            className="absolute top-3 right-3"
-            onClick={copyEmbedCode}
-          >
-            <FaClipboard />
-          </button>
-          <pre>
-            <code>{embedCode}</code>
-          </pre>
+        <div className="bg-white shadow-sm border w-full p-6 rounded-lg">
+          <div className="flex justify-between mb-3">
+            <div className="flex gap-2">
+              <span className="w-3 h-3 rounded-full bg-gray-400"></span>
+              <span className="w-3 h-3 rounded-full bg-gray-400"></span>
+              <span className="w-3 h-3 rounded-full bg-gray-400"></span>
+            </div>
+            <button type="button" className="" onClick={copyEmbedCode}>
+              <FaClipboard />
+            </button>
+          </div>
+          <div className="w-full overflow-x-scroll ">
+            <pre>
+              <code className="text-wrap">{embedCode}</code>
+            </pre>
+          </div>
         </div>
       </div>
     </div>
